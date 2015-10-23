@@ -1,16 +1,16 @@
 FROM jlgrock/centos-oraclejdk:6.6-8u45
 MAINTAINER Justin Grant <jlgrock@gmail.com>
 
-### Set Environment
-ENV AMQ_VERSION 6.2.0
-ENV AMQ_BUILD redhat-133
+ENV AMQ_PARENT /opt/jboss
+ENV AMQ_HOME /opt/jboss/jboss-a-mq
 
-ENV AMQ_HOME /opt/jboss/jboss-a-mq-$AMQ_VERSION
+ADD install_files/ $AMQ_PARENT/
+ADD VERSION $AMQ_PARENT/VERSION
+ADD loadenv.sh $AMQ_PARENT/loadenv.sh
 
-### Install AMQ
-ADD install_files/jboss-a-mq-$AMQ_VERSION.$AMQ_BUILD.zip /tmp/jboss-a-mq-$AMQ_VERSION.zip
-RUN unzip /tmp/jboss-a-mq-$AMQ_VERSION.zip
-ADD init.sh /opt/jboss/jboss-a-mq-$AMQ_VERSION/init.sh
+WORKDIR $AMQ_PARENT
+RUN ./install.sh
+ADD install_files/init.sh $AMQ_HOME/init.sh
 
 ### Create A-MQ User
 RUN sed -i "s/#admin/admin/" $AMQ_HOME/etc/users.properties && \
@@ -22,4 +22,4 @@ RUN sed -i "s/#admin/admin/" $AMQ_HOME/etc/users.properties && \
 EXPOSE 22 8101 8181 44444 1099 61616 
 
 ### Start A-MQ
-ENTRYPOINT $AMQ_HOME/docker_init.sh
+ENTRYPOINT $AMQ_HOME/init.sh

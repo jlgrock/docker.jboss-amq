@@ -4,8 +4,8 @@
 for line in $(< VERSION)
 do
   case $line in
-    JBOSS_AMQ=*)  eval "export $line" ;; # beware! eval!
-	JBOSS_AMQ_BUILD=*)  eval "export $line" ;; # beware! eval!
+    JBOSS_AMQ=*)  eval $line ;; # beware! eval!
+	JBOSS_AMQ_BUILD=*)  eval $line ;; # beware! eval!
     *) ;;
    esac
 done

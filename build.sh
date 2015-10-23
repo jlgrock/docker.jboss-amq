@@ -12,12 +12,9 @@ then
 	exit 255
 fi
 
-sed -ie "s/ENV AMQ_VERSION=FILL_IN_VERSION/ENV AMQ_VERSION=$JBOSS_AMQ/" ./Dockerfile
-sed -ie "s/ENV AMQ_BUILD=FILL_IN_VERSION/ENV AMQ_BUILD=$JBOSS_AMQ_BUILD/" ./Dockerfile
-
 # Create containers
 echo "Creating A-MQ Container ..."
-docker build -q --rm -t jlgrock/amq_jboss_amq .
+docker build -q --rm -t jlgrock/jboss-amq:$JBOSS_AMQ .
 
 if [ $? -eq 0 ]; then
     echo "Container Built"
