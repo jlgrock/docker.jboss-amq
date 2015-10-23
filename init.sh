@@ -1,13 +1,7 @@
 #!/bin/bash
 
-# Load the version from the VERSION file
-for line in $(< VERSION)
-do
-  case $line in
-    JBOSS_AMQ=*)  eval $line ;; # beware! eval!
-    *) ;;
-   esac
-done
+# load the versions
+. ./loadenv.sh
 
 echo "Starting JBossA-MQ $..."
 /opt/jboss/jboss-a-mq-$JBOSS_AMQ/bin/start

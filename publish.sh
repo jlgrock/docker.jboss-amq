@@ -1,17 +1,12 @@
 #!/bin/sh
 
-# Load the version from the VERSION file
-for line in $(< VERSION)
-do
-  case $line in
-    JBOSS_AMQ=*)  eval $line ;; # beware! eval!
-    *) ;;
-   esac
-done
-
-/bin/sh ./build.sh
+# load the versions
+. ./loadenv.sh
 
 # Build the image
+. ./build.sh
+
+# Publish the image
 docker push jlgrock/jboss-amq:$JBOSS_AMQ
 
 if [ $? -eq 0 ]; then
