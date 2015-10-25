@@ -21,4 +21,3 @@ if [ $? -eq 0 ]; then
 else
     echo "Error: Unable to Build Container"
 fi
-

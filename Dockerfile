@@ -2,7 +2,7 @@ FROM jlgrock/centos-oraclejdk:6.6-8u45
 MAINTAINER Justin Grant <jlgrock@gmail.com>
 
 ENV AMQ_PARENT /opt/jboss
-ENV AMQ_HOME /opt/jboss/jboss-a-mq
+ENV AMQ_HOME $AMQ_PARENT/jboss-a-mq
 
 ADD install_files/ $AMQ_PARENT/
 ADD VERSION $AMQ_PARENT/VERSION
