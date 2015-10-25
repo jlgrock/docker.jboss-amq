@@ -1,6 +1,8 @@
 # Introduction
 
-Dockerfile to build a ActiveMQ container image.
+Dockerfile to build a ActiveMQ container image.  This sits upon Apache Karaf, has integrated Apache Qpid (for AMQP) and Apache Camel inside the Message Broker (for flexible messaging), and thus gives multi-protocol, multi-language support (out of the box.
+
+A-MQ is embeddable and highly available.  Currently this image acts as a stand-alone container in single-node availability.
 
 # Hardware Requirements
 
