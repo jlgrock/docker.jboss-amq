@@ -29,10 +29,11 @@ Pull the image from the docker index. This is the recommended method of installa
 docker pull jlgrock/activemq:$VERSION
 ```
 
-Alternately you can build the image locally.
+Alternately you can build the image locally using the `build.sh` command
+
+
+# Example Containers
 
 ```bash
-git clone https://github.com/jlgrock/docker.activemq.git
-cd docker.activemq
-docker build --tag="jlgrock/activemq" .
+docker run -it --rm -p 8101:8101 -p 8181:8181 -p 44444:44444 -p 1099:1099 -p 61616:61616 jlgrock/jboss-amq:6.2.0
 ```
