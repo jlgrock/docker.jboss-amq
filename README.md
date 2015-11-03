@@ -19,7 +19,7 @@ A-MQ is embeddable and highly available.  Currently this image acts as a stand-a
 * Download JBoss A-MQ from http://www.jboss.org/products/amq/download/
 * Put the file in the "install_files" directory
 * Update the VERSION file
-* run `batch.sh`
+* run `build.sh`
 
 # Installation
 
