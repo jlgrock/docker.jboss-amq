@@ -14,26 +14,28 @@ A-MQ is embeddable and highly available.  Currently this image acts as a stand-a
 
 - Mostly, ActiveMQ stores things in memory, so no space is needed.  Should you start to persist to disk, consider attaching a data volume.
 
-# How to Build a new Version
+# How to get the image
+
+You can either download the image from a docker registry or build it yourself.
+
+## Building a new Version
 
 * Download JBoss A-MQ from http://www.jboss.org/products/amq/download/
 * Put the file in the "install_files" directory
 * Update the VERSION file
 * run `build.sh`
 
-# Installation
+## Downloading from a Docker Registry
 
-Pull the image from the docker index. This is the recommended method of installation as it is easier to update image. These builds are performed by the **Docker Trusted Build** service.
+These builds are not performed by the **Docker Trusted Build** service because it contains JBoss proprietary code, but this method can be used if using a [Private Docker Registry](https://docs.docker.com/registry/deploying/).
 
 ```bash
 docker pull jlgrock/activemq:$VERSION
 ```
 
-Alternately you can build the image locally using the `build.sh` command
+# Examples of Running a Container
 
-
-# Example Containers
-
+The following will map all exposed ports
 ```bash
 docker run -it --rm -p 8101:8101 -p 8181:8181 -p 44444:44444 -p 1099:1099 -p 61616:61616 jlgrock/jboss-amq:6.2.0
 ```
