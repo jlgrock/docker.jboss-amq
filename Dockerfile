@@ -9,6 +9,7 @@ ADD VERSION $AMQ_PARENT/VERSION
 ADD loadenv.sh $AMQ_PARENT/loadenv.sh
 
 WORKDIR $AMQ_PARENT
+RUN chmod +x *.sh
 RUN ./install.sh
 ADD install_files/init.sh $AMQ_HOME/init.sh
 
