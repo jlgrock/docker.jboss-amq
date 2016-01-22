@@ -1,6 +1,6 @@
 # Introduction
 
-Dockerfile to build a ActiveMQ container image.  This sits upon Apache Karaf, has integrated Apache Qpid (for AMQP) and Apache Camel inside the Message Broker (for flexible messaging), and thus gives multi-protocol, multi-language support (out of the box.
+Dockerfile to build a JBoss ActiveMQ container image.  This sits upon Apache Karaf, has integrated Apache Qpid (for AMQP) and Apache Camel inside the Message Broker (for flexible messaging), and thus gives multi-protocol, multi-language support (out of the box.
 
 A-MQ is embeddable and highly available.  Currently this image acts as a stand-alone container in single-node availability.
 
@@ -30,7 +30,7 @@ You can either download the image from a docker registry or build it yourself.
 These builds are not performed by the **Docker Trusted Build** service because it contains JBoss proprietary code, but this method can be used if using a [Private Docker Registry](https://docs.docker.com/registry/deploying/).
 
 ```bash
-docker pull jlgrock/activemq:$VERSION
+docker pull jlgrock/jboss-amq:$VERSION
 ```
 
 # Examples of Running a Container
