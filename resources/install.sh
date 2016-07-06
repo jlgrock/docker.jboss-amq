@@ -12,3 +12,5 @@ unzip -q ./jboss-a-mq-$JBOSS_AMQ.$JBOSS_AMQ_BUILD.zip
 
 echo "moving AMQ to home"
 mv ./jboss-a-mq-$JBOSS_AMQ.$JBOSS_AMQ_BUILD $AMQ_HOME
+
+rm -f jboss-a-mq-$JBOSS_AMQ.$JBOSS_AMQ_BUILD.zip
