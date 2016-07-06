@@ -12,6 +12,7 @@ WORKDIR $AMQ_PARENT
 RUN chmod +x *.sh
 RUN ./install.sh
 ADD install_files/init.sh $AMQ_HOME/init.sh
+ADD install_files/setup_ssl.sh $AMQ_HOME/setup_ssl.sh
 
 ### Create A-MQ User
 RUN sed -i "s/#admin/admin/" $AMQ_HOME/etc/users.properties && \
@@ -23,4 +24,5 @@ RUN sed -i "s/#admin/admin/" $AMQ_HOME/etc/users.properties && \
 EXPOSE 22 8101 8181 44444 1099 61616 
 
 ### Start A-MQ
-ENTRYPOINT $AMQ_HOME/init.sh
+ENTRYPOINT ["./jboss-a-mq/init.sh"]
+CMD [""]
