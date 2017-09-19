@@ -4,7 +4,7 @@
 echo "loading environment variables"
 . ./loadenv.sh
 
-AMQ_HOME=/opt/jboss/jboss-a-mq
+AMQ_HOME=/opt/app/jboss/jboss-a-mq
 
 ### Install AMQ
 echo "extracting AMQ"
