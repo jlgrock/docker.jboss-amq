@@ -15,7 +15,7 @@ fi
 # Create containers
 echo "Creating A-MQ Container ..."
 docker pull jlgrock/centos-oraclejdk:${CENTOS}-${JDK}
-docker build -q -t jlgrock/jboss-amq:${JBOSS_AMQ} .
+docker build -q --rm -t jlgrock/jboss-amq:${JBOSS_AMQ} .
 
 if [ $? -eq 0 ]; then
     echo "Container Built"
