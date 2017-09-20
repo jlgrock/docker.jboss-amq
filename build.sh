@@ -5,7 +5,7 @@
 
 echo "Processing for A-MQ Version $JBOSS_AMQ, build $JBOSS_AMQ_BUILD"
 
-if [ ! -e install_files/jboss-a-mq-$JBOSS_AMQ.$JBOSS_AMQ_BUILD.zip ]
+if [ ! -e install_files/jboss-a-mq-${JBOSS_AMQ}.${JBOSS_AMQ_BUILD}.zip ]
 then
 	echo "could not find file install_files/jboss-a-mq-$JBOSS_AMQ.$JBOSS_AMQ_BUILD.zip"
 	echo "You should put the required JBoss A-MQ binary into the root directory first."
@@ -14,8 +14,8 @@ fi
 
 # Create containers
 echo "Creating A-MQ Container ..."
-docker pull jlgrock/centos-oraclejdk:6.6-8u45
-docker build -q --rm -t jlgrock/jboss-amq:$JBOSS_AMQ .
+docker pull jlgrock/centos-oraclejdk:${CENTOS}-${JDK}
+docker build -q -t jlgrock/jboss-amq:${JBOSS_AMQ} .
 
 if [ $? -eq 0 ]; then
     echo "Container Built"

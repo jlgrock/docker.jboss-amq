@@ -30,8 +30,8 @@ umask 027
 [ -r /etc/java/java.conf ] && . /etc/java/java.conf
 export JAVA_HOME
  
-if [ -r "/opt/app/jboss/jboss-a-mq-6.3.0.redhat-187/bin/jboss-amq63.conf" ]; then
-    . "/opt/app/jboss/jboss-a-mq-6.3.0.redhat-187/bin/jboss-amq63.conf"
+if [ -r "$AMQ_HOME/bin/jboss-amq63.conf" ]; then
+    . "$AMQ_HOME/bin/jboss-amq63.conf"
 else
     echo "Error KARAF_SERVICE_CONF not defined"
     exit -1
