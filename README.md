@@ -1,6 +1,6 @@
 # Introduction
 
-Dockerfile to build a JBoss ActiveMQ container image.  This sits upon Apache Karaf, has integrated Apache Qpid (for AMQP) and Apache Camel inside the Message Broker (for flexible messaging), and thus gives multi-protocol, multi-language support (out of the box.
+Dockerfile to build a JBoss ActiveMQ container image.  This sits upon Apache Karaf, has integrated Apache Qpid (for AMQP) and Apache Camel inside the Message Broker (for flexible messaging), and thus gives multi-protocol, multi-language support (out of the box).
 
 A-MQ is embeddable and highly available.  Currently this image acts as a stand-alone container in single-node availability.
 
@@ -16,44 +16,53 @@ A-MQ is embeddable and highly available.  Currently this image acts as a stand-a
 
 # How to get the image
 
-You can either download the image from a docker registry or build it yourself.
+## Option 1: Download from a Docker Registry
 
-## Building a new Version
+These builds are not performed by the **Docker Trusted Build** service because it contains proprietary code, but this method can be used if using a Private Docker Registry.
 
-* Download JBoss A-MQ from http://www.jboss.org/products/amq/download/
-* Put the file in the "install_files" directory
+```bash
+docker pull <private_registry_name>/jlgrock/jboss-eap:${VERSION}
+```
+
+## Option 2: Building the Image
+
+* [Download JBoss AMQ 7.3.0](http://www.jboss.org/products/eap/download/)
+* Put the file in the `install_files` directory
 * Update the VERSION file
 * run `build.sh`
 
-## Downloading from a Docker Registry
 
-These builds are not performed by the **Docker Trusted Build** service because it contains JBoss proprietary code, but this method can be used if using a [Private Docker Registry](https://docs.docker.com/registry/deploying/).
-
-```bash
-docker pull jlgrock/jboss-amq:$VERSION
-```
-
-## SSL Configuration Parameters
+## Parameters
 
 Below is a complete list of available options that can be used to start JBoss AMQ with SSL.
+* **BROKER_NAME**: defines the list of the names of the queue to create.  If a names are not provided, it will create a default queue called `amq`s
+* **SSL**: accepts `true` or `false`.  `true` starts JBoss AMQ with SSL, using the SSL keystore and truststore provided (see SSL configuration section).  By default, this is set to `false`.
+* **CLIENT_USERNAME**: The username used by the client to access the broker.  By default the username is `admin`.
+* **CLIENT_PASSWORD**: The password used by the client to access the broker.  By default the password is `admin123!`.
+* **KEYSTORE_PASSWORD**: The password used for the Keystore.  Required if `SSL=true`.
+* **TRUSTSTORE_PASSWORD**:  The password used for the Truststore.  Required if `SSL=true`.
 
-- **--ssl**: Starts JBoss AMQ with SSL
-- **--ssl-host**: Sets the SSL URL/IP, e.g., `--ssl-host 0.0.0.0`
-- **--ssl-port**: Sets SSL port, e.g., `--ssl-port 61616`
+## SSL Configuration
 
 When starting JBoss AMQ with SSL the following files must be present:
-- **/amq/store/broker/broker.ks**: Broker KeyStore file
-- **/amq/store/broker/broker.ts**: Broker TrustStore file
-- **/amq/store/pw/keystore_pw**: KeyStore password file containing the broker.ks and broker.ts password encrypted using [Jasypt](https://access.redhat.com/documentation/en-US/Red_Hat_JBoss_A-MQ/6.2/html/Security_Guide/FMQSecurityEncryptProperties.html)
+* **/amq/store/broker/broker.ks**: Broker KeyStore file
+* **/amq/store/broker/broker.ts**: Broker TrustStore file
 
 # Examples of Running a Container
 
-The following will map all exposed ports
+The following will map only UI ports exposed
 ```bash
-docker run -it --rm -p 8101:8101 -p 8181:8181 -p 44444:44444 -p 1099:1099 -p 61616:61616 jlgrock/jboss-amq:6.2.0
+docker run -it --rm -p 8161:8161 jlgrock/jboss-amq:${VERSION}
 ```
 
-The following will start JBoss AMQ with SSL
+The following will map all exposed ports
 ```bash
-docker run -it --rm -p 8101:8101 -p 8181:8181 -p 44444:44444 -p 1099:1099 -p 61616:61616 jlgrock/jboss-amq:6.2.0 --ssl --ssl-host 0.0.0.0 --ssl-port 61616
+docker run -it --rm -p 8161:8161 -p61616:61616 jlgrock/jboss-amq:${VERSION}
 ```
+
+The following will start JBoss AMQ with SSL (with only the UI exposed)
+```bash
+docker run -it --rm -p 8161:8161 -e SSL=true jlgrock/jboss-amq:${VERSION}
+```
+
+At which point you can access 
