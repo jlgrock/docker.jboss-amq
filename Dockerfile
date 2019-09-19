@@ -1,4 +1,4 @@
-FROM jlgrock/centos-openjdk:6.6-8u212
+FROM jlgrock/centos-openjdk:6.6-8u221
 MAINTAINER Justin Grant <jlgrock@gmail.com>
 
 ENV AMQ_PARENT /opt/app/jboss
