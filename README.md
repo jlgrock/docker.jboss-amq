@@ -37,8 +37,8 @@ docker pull <private_registry_name>/jlgrock/jboss-eap:${VERSION}
 Below is a complete list of available options that can be used to start JBoss AMQ with SSL.
 * **BROKER_NAME**: defines the list of the names of the queue to create.  If a names are not provided, it will create a default queue called `amq`s
 * **SSL**: accepts `true` or `false`.  `true` starts JBoss AMQ with SSL, using the SSL keystore and truststore provided (see SSL configuration section).  By default, this is set to `false`.
-* **CLIENT_USERNAME**: The username used by the client to access the broker.  By default the username is `admin`.
-* **CLIENT_PASSWORD**: The password used by the client to access the broker.  By default the password is `admin123!`.
+* **CLIENT_USERNAME**: The username used by the client to access the broker.  By default the username is `amq`.
+* **CLIENT_PASSWORD**: The password used by the client to access the broker.  By default the password is `amq123!`.
 * **KEYSTORE_PASSWORD**: The password used for the Keystore.  Required if `SSL=true`.
 * **TRUSTSTORE_PASSWORD**:  The password used for the Truststore.  Required if `SSL=true`.
 
